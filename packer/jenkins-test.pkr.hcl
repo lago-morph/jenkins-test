@@ -2,7 +2,7 @@ packer {
   required_plugins {
     vagrant = {
       version = "~> 1"
-      source = "github.com/hashicorp/vagrant"
+      source  = "github.com/hashicorp/vagrant"
     }
   }
 }
@@ -13,12 +13,13 @@ locals {
 
 source "vagrant" "jenkins-jammy64" {
   communicator = "ssh"
-  source_path = "ubuntu/jammy64"
-  provider = "virtualbox"
+  source_path  = "ubuntu/jammy64"
+  provider     = "virtualbox"
+  skip_add     = true
 }
 
 build {
-  name = "jenkins-jammy64-build"
+  name    = "jenkins-jammy64-build"
   sources = ["source.vagrant.jenkins-jammy64"]
 
   provisioner "shell" {
